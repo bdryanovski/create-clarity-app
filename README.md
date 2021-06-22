@@ -59,3 +59,5 @@ You may select one of the templates below by passing -t or --template argument:
 ### Disclaimer
 
 This tool is experimental so some changes could be done without any warning.
+
+This is not official tool.
