@@ -7,11 +7,13 @@ const {isSafeToCreateProjectIn, info, documentation} = require('./utils.js')
 const {templates, defaultTemplate } = require('./templates')
 
 const packageJson = require('../package.json');
+const {start} = require('repl');
 
 let projectName;
 
 function main() {
   const program = new Command(packageJson.name)
+  const startTime = new Date().getTime()
 
   program.version(packageJson.version, '-v, --version', 'output the current version')
     .arguments('<project-name>')
@@ -59,6 +61,8 @@ function main() {
   // originalDirectory - execution directory
   const instructions = require(templates[options.template]);
   instructions(root, appName, '1.0.0', originalDirectory);
+
+  info(`Runtime: ${new Date().getTime() - startTime} ms`)
 }
 
 module.exports = {

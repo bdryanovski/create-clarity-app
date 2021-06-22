@@ -3,6 +3,8 @@ const chalk = require('chalk')
 const os = require('os')
 const execSync = require('child_process').execSync
 
+const ora = require('ora')
+
 function isSafeToCreateProjectIn(root, name) {
   const validFiles = [
     '.DS_Store',
@@ -42,7 +44,7 @@ function isSafeToCreateProjectIn(root, name) {
     .filter(file => !isErrorLog(file));
 
   if (conflicts.length > 0) {
-    console.log(
+    error(
       `The directory ${chalk.green(name)} contains files that could conflict:`
     );
     for (const file of conflicts) {
@@ -58,7 +60,7 @@ function isSafeToCreateProjectIn(root, name) {
       }
     }
     console.log();
-    console.log(
+    error(
       'Either try using a new directory name, or remove the files listed above.'
     );
 
@@ -75,14 +77,18 @@ function isSafeToCreateProjectIn(root, name) {
 }
 
 function execute(cmd, options = {ignoreError: false}) {
-  commandInfo(cmd)
+  const spn = ora({text: cmd + '\n', color: 'green'}).start();
+
   try {
-    return execSync(cmd, {cwd: options.cwd}).toString().trim();
+    const output = execSync(cmd, {cwd: options.cwd}).toString().trim();
+    spn.succeed(`${cmd} - done`)
+    return output;
   } catch (error) {
+    spn.fail(error.message)
     if (options.ignoreError) {
       return
     }
-    console.log(error.stderr.toString())
+    error(error.stderr.toString())
     throw error.message
     // throw error
   }
@@ -90,7 +96,6 @@ function execute(cmd, options = {ignoreError: false}) {
 
 function npmInstallPackages(packages, initDirectory) {
   const toInstall = packages.join(' ')
-  commandInfo(`Adding packages ${toInstall}`)
   execute(`npm install ${toInstall} --save`, {cwd: initDirectory})
 }
 
@@ -127,17 +132,19 @@ function documentation(string) {
   console.log(string)
 }
 
-function commandInfo(string) {
-  console.log(">>", chalk.yellow(string));
-}
-
 function commandOutput(string) {
   console.log(chalk.gray(string))
 }
 
 function syncFiles(target, destination, options = {}) {
-  commandOutput('Syncing files ...')
-  return fs.copySync(target, destination, {...{ overwrite: true}, ...options})
+  const spn = ora({text: 'Syncing template files ...\n', color: 'green'}).start();
+
+  try {
+    fs.copySync(target, destination, {...{overwrite: true}, ...options})
+    spn.succeed('Sync finish')
+  } catch (e) {
+    spn.fail(e.message)
+  }
 }
 
 module.exports = {
