@@ -1,0 +1,51 @@
+.header.header-6, header.header-6 {
+  background-color: #00364d;
+  background-color: var(--clr-header-6-bg-color,#00364d);
+}
+main-container .header, .main-container header {
+  flex: 0 0 3rem;
+}
+
+.header .logo {
+  margin-right: 10px;
+}
+
+.header .branding .title, header .branding .title {
+  color: #fafafa;
+  color: var(--clr-header-title-color,#fafafa);
+  font-weight: 400;
+  font-weight: var(--clr-header-title-font-weight,400);
+  font-family: Metropolis,Avenir Next,Helvetica Neue,Arial,sans-serif;
+  font-family: var(--clr-header-title-font-family,Metropolis,"Avenir Next","Helvetica Neue",Arial,sans-serif);
+  font-size: .8rem;
+  letter-spacing: .01em;
+  line-height: 3rem;
+  text-decoration: none;
+}
+
+img {
+  vertical-align: middle;
+}
+img {
+  border-style: none;
+}
+
+.header, header {
+  display: flex;
+  color: #fafafa;
+  color: var(--clr-header-font-color,#fafafa);
+  height: 3rem;
+  white-space: nowrap;
+}
+
+.main-container .header .branding {
+  max-width: none;
+}
+
+.header .branding, header .branding {
+  display: flex;
+  flex: 0 0 auto;
+  min-width: 10.2rem;
+  padding: 0 1.2rem;
+  height: 3rem;
+}

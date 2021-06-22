@@ -1,0 +1,23 @@
+{
+  "name": "create-clarity-app",
+  "version": "1.0.0",
+  "description": "Create Clarity based application on the go",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bdryanovski/create-clarity-app.git"
+  },
+  "bin": {
+    "create-clarity-app": "./src/index.js"
+  },
+  "scripts": {
+  },
+  "keywords": ["clarity", "create", "webcomponents", "webpack", "angular", "react"],
+  "author": "Bozhidar Dryanovski",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "commander": "^7.2.0",
+    "fs-extra": "^10.0.0"
+  }
+}
