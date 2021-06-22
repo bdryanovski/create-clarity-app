@@ -2,7 +2,7 @@
  * Core CDN template
  */
 const path = require('path');
-const { info, syncFiles, updatePackageJSON, commandOutput, execute} = require('../../src/utils');
+const {info, syncFiles, updatePackageJSON, commandOutput, execute, documentation} = require('../../src/utils');
 
 module.exports = function AngularCLI(target, applicationName, version, sourceDirectory) {
 
@@ -19,6 +19,12 @@ module.exports = function AngularCLI(target, applicationName, version, sourceDir
   )
 
   commandOutput(execute(`npm install`, {cwd: target}))
+
+  documentation('');
+  documentation(`To start the project:`);
+  documentation(`\t cd ${applicationName}`);
+  documentation(`\t npm run start`);
+  documentation('')
 
   info('Done');
 };

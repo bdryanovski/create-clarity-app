@@ -77,7 +77,7 @@ function isSafeToCreateProjectIn(root, name) {
 }
 
 function execute(cmd, options = {ignoreError: false}) {
-  const spn = ora({text: cmd + '\n', color: 'green'}).start();
+  const spn = ora({text: `${cmd} \n`, color: 'green'}).start();
 
   try {
     const output = execSync(cmd, {cwd: options.cwd}).toString().trim();
@@ -95,8 +95,7 @@ function execute(cmd, options = {ignoreError: false}) {
 }
 
 function npmInstallPackages(packages, initDirectory) {
-  const toInstall = packages.join(' ')
-  execute(`npm install ${toInstall} --save`, {cwd: initDirectory})
+  execute(`npm install ${packages.join(' ')} --save`, {cwd: initDirectory})
 }
 
 function updatePackageJSON(location, method) {
@@ -118,6 +117,17 @@ function writeFile(location, file, content) {
   );
 }
 
+function syncFiles(target, destination, options = {}) {
+  const spn = ora({text: 'Syncing template files ...\n', color: 'green'}).start();
+
+  try {
+    fs.copySync(target, destination, {...{overwrite: true}, ...options});
+    spn.succeed('Sync finish');
+  } catch (e) {
+    spn.fail(e.message);
+  }
+}
+
 // UI
 
 function info(string) {
@@ -129,22 +139,11 @@ function error(string) {
 }
 
 function documentation(string) {
-  console.log(string)
+  console.log(chalk.cyan(string))
 }
 
 function commandOutput(string) {
   console.log(chalk.gray(string))
-}
-
-function syncFiles(target, destination, options = {}) {
-  const spn = ora({text: 'Syncing template files ...\n', color: 'green'}).start();
-
-  try {
-    fs.copySync(target, destination, {...{overwrite: true}, ...options})
-    spn.succeed('Sync finish')
-  } catch (e) {
-    spn.fail(e.message)
-  }
 }
 
 module.exports = {

@@ -2,7 +2,7 @@
  * Webpack Core Starter TS
  */
 const path = require('path');
-const {info, syncFiles, commandOutput, execute, updatePackageJSON} = require('../../src/utils');
+const {info, syncFiles, commandOutput, execute, updatePackageJSON, documentation} = require('../../src/utils');
 
 module.exports = function WebpackCoreStarterTS(target, applicationName, version, sourceDirectory) {
 
@@ -20,6 +20,11 @@ module.exports = function WebpackCoreStarterTS(target, applicationName, version,
 
   commandOutput(execute(`npm install`, {cwd: target}))
 
-  info('Done');
+  documentation('');
+  documentation(`To start the project:`);
+  documentation(`\t cd ${applicationName}`);
+  documentation(`\t npm run start`);
+  documentation('')
 
+  info('Done');
 };

@@ -2,7 +2,7 @@
  * Create React App
  */
 const path = require('path');
-const {execute, info, commandOutput, syncFiles, npmInstallPackages} = require('../../src/utils');
+const {execute, info, commandOutput, syncFiles, npmInstallPackages, documentation} = require('../../src/utils');
 
 module.exports = function CreateReactApp(target, applicationName, version, sourceDirectory) {
 
@@ -29,6 +29,12 @@ module.exports = function CreateReactApp(target, applicationName, version, sourc
       return json;
     }
   )
+
+  documentation('');
+  documentation(`To start the project:`);
+  documentation(`\t cd ${applicationName}`);
+  documentation(`\t npm run start`);
+  documentation('')
 
   info('Done');
 

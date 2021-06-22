@@ -2,7 +2,7 @@
  * Core Addon kit template
  */
 const path = require('path');
-const {info, syncFiles, updatePackageJSON, commandOutput, execute, npmInstallPackages} = require('../../src/utils');
+const {info, syncFiles, updatePackageJSON, commandOutput, execute, npmInstallPackages, documentation} = require('../../src/utils');
 
 module.exports = function CoreAddonKit(target, applicationName, version, sourceDirectory) {
 
@@ -30,6 +30,12 @@ module.exports = function CoreAddonKit(target, applicationName, version, sourceD
   ], target)
 
   commandOutput(execute(`npm install`, {cwd: target}));
+
+  documentation('');
+  documentation(`To start the project:`);
+  documentation(`\t cd ${applicationName}`);
+  documentation(`\t npm run start`);
+  documentation('')
 
   info('Done');
 };

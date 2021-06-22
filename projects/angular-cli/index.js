@@ -2,7 +2,7 @@
  * Angular CLI template
  */
 const path = require('path');
-const {execute, info, commandOutput, syncFiles} = require('../../src/utils')
+const {execute, info, commandOutput, syncFiles, documentation} = require('../../src/utils')
 
 module.exports = function AngularCLI(target, applicationName, version, sourceDirectory) {
 
@@ -19,6 +19,12 @@ module.exports = function AngularCLI(target, applicationName, version, sourceDir
   syncFiles(path.join(__dirname, 'files'), target)
 
   // @NOTE: no need to run install here AngularCli already done that for you
+
+  documentation('')
+  documentation(`To start the project:`)
+  documentation(`\t cd ${applicationName}`)
+  documentation(`\t npm run start`)
+  documentation('')
 
   info('Done')
 

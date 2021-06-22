@@ -3,7 +3,7 @@
  */
 const {exec} = require('child_process');
 const path = require('path');
-const {info, syncFiles, commandOutput, execute, updatePackageJSON} = require('../../src/utils');
+const {info, syncFiles, commandOutput, execute, updatePackageJSON, documentation} = require('../../src/utils');
 
 module.exports = function VueCore(target, applicationName, version, sourceDirectory) {
 
@@ -34,7 +34,13 @@ module.exports = function VueCore(target, applicationName, version, sourceDirect
     }
   )
 
-  commandOutput(execute(`npm install`, { cwd: target }))
+  commandOutput(execute(`npm install`, {cwd: target}))
+
+  documentation('');
+  documentation(`To start the project:`);
+  documentation(`\t cd ${applicationName}`);
+  documentation(`\t npm run serve`);
+  documentation('')
 
   info('Done');
 
