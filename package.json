@@ -1,6 +1,6 @@
 {
   "name": "create-clarity-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create Clarity based application on the go",
   "main": "src/index.js",
   "repository": {
