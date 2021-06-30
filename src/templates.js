@@ -1,15 +1,18 @@
+/**
+ * List of available templates
+ */
 const templates = {
-  'angular-cli': '../projects/angular-cli',
-  'cdn': '../projects/core-cdn',
-  'lit-element-starter-ts': '../projects/lit-element-starter-ts',
-  'webpack-typescript': '../projects/webpack-core-typescript',
-  'vue': '../projects/vue-app',
-  'create-react-app': '../projects/create-react-app',
-  'electron-typescript': '../projects/electron-typescript-core',
-  'library-kit': '../projects/clarity-addon-kit',
+  'core-angular-cli': '../projects/angular-cli',
+  'core-cdn': '../projects/core-cdn',
+  'core-lit-element-starter-ts': '../projects/lit-element-starter-ts',
+  'core-webpack-typescript': '../projects/webpack-core-typescript',
+  'core-vue': '../projects/vue-app',
+  'core-create-react-app': '../projects/create-react-app',
+  'core-electron-typescript': '../projects/electron-typescript-core',
+  'core-library-kit': '../projects/clarity-addon-kit',
 }
 
-const defaultTemplate = 'angular-cli'
+const defaultTemplate = 'core-angular-cli'
 
 module.exports = {
   templates,
