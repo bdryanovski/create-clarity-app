@@ -62,7 +62,7 @@ function main() {
   const instructions = require(templates[options.template]);
   instructions(root, appName, '1.0.0', originalDirectory);
 
-  info(`Runtime: ${new Date().getTime() - startTime} ms`)
+  info(`Runtime time: ${new Date().getTime() - startTime} ms`)
 }
 
 module.exports = {

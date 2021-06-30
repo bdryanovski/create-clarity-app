@@ -122,7 +122,7 @@ function syncFiles(target, destination, options = {}) {
 
   try {
     fs.copySync(target, destination, {...{overwrite: true}, ...options});
-    spn.succeed('Sync finish');
+    spn.succeed('All files are synchronize.');
   } catch (e) {
     spn.fail(e.message);
   }
@@ -131,19 +131,19 @@ function syncFiles(target, destination, options = {}) {
 // UI
 
 function info(string) {
-  console.log(chalk.green(string))
+  console.log(`🦄 ${chalk.green(string)}`)
 }
 
 function error(string) {
-  console.log(chalk.red(string))
+  console.log(`\n🐞 ${chalk.red(string)}\n`)
 }
 
 function documentation(string) {
-  console.log(chalk.cyan(string))
+  console.log(`🐙 ${chalk.cyan(string)}`)
 }
 
 function commandOutput(string) {
-  console.log(chalk.gray(string))
+  console.log(`\n${chalk.gray(string)}\n`)
 }
 
 module.exports = {
