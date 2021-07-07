@@ -139,7 +139,7 @@ function error(string) {
 }
 
 function documentation(string) {
-  console.log(`🐙 ${chalk.cyan(string)}`)
+  console.log(`${chalk.cyan(string)}`)
 }
 
 function commandOutput(string) {
